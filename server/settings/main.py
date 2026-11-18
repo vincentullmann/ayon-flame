@@ -2,34 +2,11 @@ from ayon_server.settings import BaseSettingsModel, SettingsField
 
 from .bookmarks import BookmarksModel, DEFAULT_BOOKMARK_SETTINGS
 from .imageio import FlameImageIOModel, DEFAULT_IMAGEIO_SETTINGS
+from .hooks import FlameHooksModel, DEFAULT_HOOKS_SETTINGS
 from .create_plugins import CreatePluginsModel, DEFAULT_CREATE_SETTINGS
 from .publish_plugins import PublishPluginsModel, DEFAULT_PUBLISH_SETTINGS
 from .loader_plugins import LoaderPluginsModel, DEFAULT_LOADER_SETTINGS
 from .custom_menu import CustomMenuSettings, DEFAULT_CUSTOM_MENU_SETTINGS
-
-
-class InstallOpenTimelineIOToFlameModel(BaseSettingsModel):
-    enabled: bool = SettingsField(
-        default=True,
-        title="Enable"
-    )
-
-
-# hooks configurations
-class FlameHooksModel(BaseSettingsModel):
-    _layout = "expanded"
-    InstallOpenTimelineIOToFlame: InstallOpenTimelineIOToFlameModel = \
-        SettingsField(
-            default_factory=InstallOpenTimelineIOToFlameModel,
-            title="Install OpenTimelineIO to Flame"
-        )
-    project_setup: bool = SettingsField(
-        default=True,
-        title="Automated Project setup",
-        description=(
-            "Create and setup a Flame project matching AYON project."
-        ),
-    )
 
 
 class FlameSettings(BaseSettingsModel):
@@ -66,6 +43,7 @@ class FlameSettings(BaseSettingsModel):
 DEFAULT_VALUES = {
     "bookmarks": DEFAULT_BOOKMARK_SETTINGS,
     "imageio": DEFAULT_IMAGEIO_SETTINGS,
+    "hooks": DEFAULT_HOOKS_SETTINGS,
     "create": DEFAULT_CREATE_SETTINGS,
     "publish": DEFAULT_PUBLISH_SETTINGS,
     "load": DEFAULT_LOADER_SETTINGS,
